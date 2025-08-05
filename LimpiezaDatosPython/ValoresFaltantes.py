@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+
 
 data = {
     "propietario": ["Carlos", "Ana", "Pedro", "ana", "LUIS", None, "María", "PEDRO"],
@@ -18,24 +18,10 @@ data = {
     "num_garajes": [1, 0, 2, 1, 2, None, None, 2]
 }
 
-pd.set_option('display.float_format', '{:.2f}'.format) #Adaptar Formato de los numeros flotantes
 df = pd.DataFrame(data)
-#Obtener la media
-media = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].mean(numeric_only=True)
-print(f'Media: {media}')
+valores_faltantes = df.isnull().sum()
+print(f"Valores Faltantes por Columna: {valores_faltantes}")
 
-#Obtener la mediana
-mediana = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].median(numeric_only=True)
-print(f'Mediana: {mediana}')
-
-#Obtener la moda
-moda = df[['metros', 'num_cuartos', 'tipo_prop', 'año_construccion', 'num_baños', 'num_garajes']].mode().iloc[0]
-print(f'Moda: {moda}')
-
-#Obtener la Varianza
-varianza = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].var(numeric_only=True)
-print(f'Varianza: {varianza}')
-
-#Obtener la Desviación Estándar
-desviacion_estandar = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].std(numeric_only=True)
-print(f'Desviación Estándar: {desviacion_estandar}')
+# Porcentaje de valores faltantes
+porcentaje_faltantes = (df.isnull().sum() / len(df)) * 100
+print(f"Porcentaje de Valores Faltantes por Columna: {porcentaje_faltantes}")
