@@ -19,10 +19,14 @@ data = {
 }
 
 df = pd.DataFrame(data)
+#Obtener la media
+media = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].mean(numeric_only=True)
+print(f'Media: {media}')
 
-print(df.head()) #Encabezados
-print(df.shape) #Dimension del DataFrame (Fila, columna)
-print(df.info()) #Informacion de las columnas (Tipos de Datos, sin valores, nulos)
-print(df.describe()) #Genera estadistica descriptiva para el DataFrame (Cantidades, Media, recuento, minimo, maximo, percentiles)
-print(df.isnull().sum()) #Suma los valores nulos en el dataframe
-print(df.nunique()) #Determina cuantos valores unicos existen en el DataFrame
+#Obtener la mediana
+mediana = df[['metros', 'num_cuartos', 'valor_prop', 'num_baños', 'num_garajes']].median(numeric_only=True)
+print(f'Mediana: {mediana}')
+
+#Obtener la moda
+moda = df[['metros', 'num_cuartos', 'tipo_prop', 'año_construccion', 'num_baños', 'num_garajes']].mode().iloc[0]
+print(f'Moda: {moda}')
