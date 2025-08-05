@@ -19,12 +19,9 @@ data = {
 }
 
 df = pd.DataFrame(data)
-
-# Identificar valores duplicados en el DataFrame, Aplica para todas las columnas
-# Si se quiere identificar duplicados en columnas especificas, se puede usar df.duplicated
-duplicados = df.duplicated()
-print('Valores Duplicados: ', df[duplicados])
-
-#eliminar los duplicados
-df_sin_duplicados = df.drop_duplicates()
-print('DataFrame sin duplicados:\n', df_sin_duplicados)
+tipo_prop = pd.DataFrame(["Casa", "Departamento"], columns=["tipo_prop"]) #Solo deben ser de este tipo
+valores_inconsistentes = set(df['tipo_prop']).difference(tipo_prop['tipo_prop'])
+print("Valores Inconsistentes en 'tipo_prop':", valores_inconsistentes)
+#Identificar cuales son los valores inconsistentes:
+inconsistentes = df[df['tipo_prop'].isin(valores_inconsistentes)]
+print(f"Filas con valores inconsistentes en 'tipo_prop': {inconsistentes}")
